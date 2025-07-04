@@ -5,7 +5,7 @@ class Application:
 
     def __init__(self):
         self.is_running: bool = True
-        self.tray_icon: TrayIcon = TrayIcon(icon_path='./src/app_icon.ico', name='testTrayApp')
+        self.tray_icon: TrayIcon = TrayIcon(icon_path='./app_icon.ico', name='testTrayApp')
         self.tray_icon.set_exit_callback(callback=self.exit_function)
         self.tray_icon.run()
         print('start running')
