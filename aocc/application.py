@@ -1,4 +1,4 @@
-from src.trayicon import TrayIcon
+from aocc.src.trayicon import TrayIcon
 from time import sleep
 
 class Application:
