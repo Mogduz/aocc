@@ -12,6 +12,14 @@ class FileObject:
     def is_file(self) -> bool:
         return os.path.isfile(self._path)
     
+    def remove(self) -> None:
+        if self.exists() and self.is_file():
+            os.unlink(self._path)
+
+    def touch(self):
+        with open(file=self._path, mode="a") as file:
+            os.utime(self._path, None)
+
     def read_bytes(self) -> bytes:
         if self.exists() and self.is_file():
             with open(file=self._path, mode='rb') as reader:
