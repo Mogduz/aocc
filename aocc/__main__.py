@@ -1,6 +1,6 @@
 import sys
 from aocc.application import Application
-
+from time import sleep
 
 def run():
     """
@@ -10,7 +10,8 @@ def run():
     :return: Exit-Code (0 = Erfolg, >0 = Fehler)
     """
     try:
-        return Application()
+        Application()
+        return 0
     except Exception as e:
         print(f"Fehler: {e}", file=sys.stderr)
         return 1
