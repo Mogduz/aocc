@@ -13,15 +13,23 @@ class FileObject:
         return os.path.isfile(self._path)
     
     def read_bytes(self) -> bytes:
-        with open(file=self._path, mode='rb') as reader:
-            return reader.read()
-
+        if self.exists() and self.is_file():
+            with open(file=self._path, mode='rb') as reader:
+                return reader.read()
+        return b''
+    
     def write_bytes(self, data: bytes) -> int:
         with open(file=self._path, mode='wb') as writer:
             return writer.write(data)
         
     def read_object(self) -> any:
-        return pickle.loads(self.read_bytes())
+        data: bytes = self.read_bytes()
+        if len(data) > 0:
+            try:
+                return pickle.loads(data)
+            except:
+                return None
+        return None
     
     def write_object(self, obj: any) -> bool:
         data = pickle.dumps(obj)
